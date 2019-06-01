@@ -8,20 +8,15 @@ import org.apache.logging.log4j.LogManager
 import java.io.File
 import java.lang.instrument.Instrumentation
 import java.net.URL
-import java.net.URLClassLoader
-import java.lang.reflect.AccessibleObject.setAccessible
-import java.net.URLEncoder
 
-
+@Inaccessible
 object HyperiumAgent {
 
     private val logger = LogManager.getLogger("Agent")
 
-    @Inaccessible
     val transformers = listOf(MinecraftClientTransformer, InGameHudTransformer)
 
     @JvmStatic
-    @Inaccessible
     fun premain(arguments: String?, instrumentation: Instrumentation) {
         logger.info("[Agent] HyperiumAgent Agent has been loaded, transforming classes.. ")
         instrumentation.addTransformer(ClassTransformer)
@@ -30,21 +25,22 @@ object HyperiumAgent {
     @JvmStatic
     fun switchClassloader(classLoader: ClassLoader) {
         val uri = HyperiumAgent::class.java.protectionDomain.codeSource.location.toURI()
+
         try {
-            val method = classLoader::class.java.getDeclaredMethod("addURL", URL::class.java)
-            method.isAccessible = true
-            println(File(HyperiumAgent::class.java.protectionDomain.codeSource.location.toURI()))
-            method.invoke(classLoader, File(uri).toURL())
+            classLoader::class.java.getDeclaredMethod("addURL", URL::class.java).run {
+                isAccessible = true
+                invoke(classLoader, File(uri).toURI().toURL())
+            }
         } catch (e: NoSuchMethodException) {
-            val method = classLoader::class.java
-                    .getDeclaredMethod("appendToClassPathForInstrumentation", String::class.java)
-            method.isAccessible = true
-           method.invoke(classLoader, uri.toURL())
+            classLoader::class.java
+                    .getDeclaredMethod("appendToClassPathForInstrumentation", String::class.java).run {
+                        isAccessible = true
+                        invoke(classLoader, uri.toURL())
+                    }
         }
 
 
     }
-
 
 
 }
