@@ -26,6 +26,7 @@ object ClassTransformer : ClassFileTransformer {
     }
 
     override fun transform(classLoader: ClassLoader?, fileName: String?, p2: Class<*>?, p3: ProtectionDomain?, basicClass: ByteArray?): ByteArray? {
+    //    println(fileName + "--:--" + classLoader)
         if (basicClass == null || fileName == null) return null
 
         val className = fileName.replace("/", ".")

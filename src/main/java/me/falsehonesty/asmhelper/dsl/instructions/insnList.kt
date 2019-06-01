@@ -149,7 +149,7 @@ class InsnListBuilder : Opcodes {
 
     fun pop2() = insn(InsnNode(POP2))
 
-    fun ldc(constant: Any) {
+    infix fun ldc(constant: Any) {
         insn(LdcInsnNode(constant))
     }
 
