@@ -69,7 +69,7 @@ jar {
     // Add java agent settings
     manifest {
         attributes(
-                'Premain-Class': 'me.kbrewster.hyperium.Hyperium',
+                'Premain-Class': 'me.kbrewster.hyperium.asm.HyperiumAgent',
                 'Can-Redefine-Classes': true,
                 'Can-Retransform-Classes': true
         )

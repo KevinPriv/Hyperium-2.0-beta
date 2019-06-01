@@ -25,7 +25,12 @@ object MinecraftClientTransformer: Transformable {
                 ldc("Successfully launched Hyperium 2.0!")
                 invoke(InvokeType.VIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/Object;)V")
 
-                // Hyperium.INSTANCE.getEventbus().register(Hyperium.INSTANCE)
+                // HyperiumAgent.INSTANCE.switchClassloader(Thread.currentThread().getContextClassLoader)
+                invoke(InvokeType.STATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;")
+                invoke(InvokeType.VIRTUAL, "java/lang/Thread", "getContextClassLoader", "()Ljava/lang/ClassLoader;")
+                invoke(InvokeType.STATIC, "me/kbrewster/hyperium/asm/HyperiumAgent", "switchClassloader", "(Ljava/lang/ClassLoader;)V")
+
+                //Hyperium.INSTANCE
                 field(FieldAction.GET_STATIC, "me/kbrewster/hyperium/Hyperium", "INSTANCE", "Lme/kbrewster/hyperium/Hyperium;")
                 astore(8)
                 field(FieldAction.GET_STATIC, "me/kbrewster/hyperium/Hyperium", "INSTANCE", "Lme/kbrewster/hyperium/Hyperium;")
