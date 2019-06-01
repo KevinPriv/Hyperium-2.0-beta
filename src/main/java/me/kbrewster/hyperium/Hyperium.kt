@@ -4,11 +4,8 @@ import me.kbrewster.eventbus.DefaultEventBus
 import me.kbrewster.eventbus.Subscribe
 import me.kbrewster.hyperium.events.InitialisationEvent
 import me.kbrewster.hyperium.events.OnGuiHudRenderEvent
-import net.minecraft.client.MinecraftClient
 import me.kbrewster.hyperium.features.FeaturesManager
 import me.kbrewster.hyperium.features.hud.HUD
-import me.kbrewster.hyperium.transformers.InGameHudTransformer
-import me.kbrewster.hyperium.transformers.MinecraftClientTransformer
 import org.apache.logging.log4j.LogManager
 
 @Suppress("unused")
@@ -31,6 +28,5 @@ object Hyperium {
 
     @Subscribe(1337)
     fun render(event: OnGuiHudRenderEvent) {
-        MinecraftClient.getInstance().gameRenderer.client.inGameHud.fontRenderer.drawWithShadow("test", 1F, 1F, 0xFFFFFF)
     }
 }
