@@ -1,6 +1,5 @@
 package me.kbrewster.hyperium.transformers
 
-import com.mojang.blaze3d.platform.GlStateManager
 import me.falsehonesty.asmhelper.dsl.At
 import me.falsehonesty.asmhelper.dsl.InjectionPoint
 import me.falsehonesty.asmhelper.dsl.inject

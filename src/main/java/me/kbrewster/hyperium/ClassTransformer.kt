@@ -8,7 +8,7 @@ import org.objectweb.asm.tree.ClassNode
 import java.lang.instrument.ClassFileTransformer
 import java.security.ProtectionDomain
 
-object ClassTransformer: ClassFileTransformer {
+object ClassTransformer : ClassFileTransformer {
 
     private val logger = LogManager.getLogger("Class-Transformer")
 
@@ -31,11 +31,11 @@ object ClassTransformer: ClassFileTransformer {
         val className = fileName.replace("/", ".")
 
         // checks if the class is being excluded from being transformed
-        if(excludedPackages.filter { className.startsWith(it) }.any()) {
+        if (excludedPackages.filter { className.startsWith(it) }.any()) {
             return basicClass
         }
 
-        if(className in excludedClasses) {
+        if (className in excludedClasses) {
             return basicClass
         }
 
@@ -48,13 +48,13 @@ object ClassTransformer: ClassFileTransformer {
 
         // the classes which will get transformed if they have an ASM writer, else will just return the unmodified class
         val writers = asmWriters
-                .filter {  it.className == className }
+                .filter { it.className == className }
                 .ifEmpty { return basicClass }
 
         // must have an ASM writer so it will now be transformed
         logger.info("Transforming class {}", className)
 
-       return transformClass(basicClass, writers).toByteArray()
+        return transformClass(basicClass, writers).toByteArray()
     }
 
     private fun transformClass(basicClass: ByteArray?, writers: List<AsmWriter>): ClassWriter {
