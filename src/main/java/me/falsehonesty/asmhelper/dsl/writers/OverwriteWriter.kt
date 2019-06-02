@@ -5,7 +5,7 @@ import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.InsnList
 import org.objectweb.asm.tree.MethodNode
 
-class OverwriteWriter(
+class   OverwriteWriter(
     className: String,
     private val methodName: String,
     private val insnList: InsnList,

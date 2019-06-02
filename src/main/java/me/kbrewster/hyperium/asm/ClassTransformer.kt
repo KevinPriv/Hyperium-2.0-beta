@@ -1,4 +1,4 @@
-package me.kbrewster.hyperium
+package me.kbrewster.hyperium.asm
 
 import me.falsehonesty.asmhelper.dsl.AsmWriter
 import org.apache.logging.log4j.LogManager
@@ -8,6 +8,9 @@ import org.objectweb.asm.tree.ClassNode
 import java.lang.instrument.ClassFileTransformer
 import java.security.ProtectionDomain
 
+/**
+ *
+ */
 object ClassTransformer: ClassFileTransformer {
 
     private val logger = LogManager.getLogger("Class-Transformer")

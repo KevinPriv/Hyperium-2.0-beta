@@ -1,4 +1,4 @@
-package me.kbrewster.hyperium
+package me.kbrewster.hyperium.asm
 
 import net.minecraft.client.MinecraftClient
 import kotlin.properties.ReadOnlyProperty

@@ -1,12 +1,10 @@
-package me.kbrewster.hyperium.transformers
+package me.kbrewster.hyperium.asm.transformers
 
-import com.mojang.blaze3d.platform.GlStateManager
 import me.falsehonesty.asmhelper.dsl.At
 import me.falsehonesty.asmhelper.dsl.InjectionPoint
 import me.falsehonesty.asmhelper.dsl.inject
 import me.falsehonesty.asmhelper.dsl.instructions.*
-import me.kbrewster.hyperium.Transformable
-import me.kbrewster.hyperium.remapper
+import me.kbrewster.hyperium.asm.remapper
 import net.minecraft.client.gui.hud.InGameHud
 
 object InGameHudTransformer : Transformable {
@@ -20,7 +18,6 @@ object InGameHudTransformer : Transformable {
         className = inGameHudName
         methodName = drawName
         at = At(InjectionPoint.INVOKE(Descriptor(inGameHudName.replace(".", "/"), renderStatusEffectOverlayName, "()V")), before = false)
-
         insnList {
             // local_7 = OnGuiHudRender()
             // Hyperium.INSTANCE.getEventbus().post(local_7)
@@ -40,6 +37,7 @@ object InGameHudTransformer : Transformable {
             }
         }
     }
+
 
     init {
         addTransformer(draw)

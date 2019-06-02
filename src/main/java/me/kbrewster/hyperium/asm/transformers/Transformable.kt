@@ -1,6 +1,8 @@
-package me.kbrewster.hyperium
+package me.kbrewster.hyperium.asm.transformers
 
 import me.falsehonesty.asmhelper.dsl.AsmWriter
+import me.kbrewster.hyperium.Inaccessible
+import me.kbrewster.hyperium.asm.ClassTransformer
 
 @Inaccessible
 interface Transformable {
