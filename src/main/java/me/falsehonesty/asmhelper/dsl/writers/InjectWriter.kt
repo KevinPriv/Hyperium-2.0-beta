@@ -9,17 +9,17 @@ import org.objectweb.asm.tree.InsnList
 import org.objectweb.asm.tree.MethodNode
 
 class InjectWriter(
-    className: String,
-    private val methodName: String,
-    private val at: At,
-    private val insnList: InsnList,
-    private val methodDesc: String? = null
+        className: String,
+        private val methodName: String,
+        private val at: At,
+        private val insnList: InsnList,
+        private val methodDesc: String? = null
 ) : AsmWriter(className) {
     override fun transform(classNode: ClassNode) {
         classNode.methods
-            .filter { if (methodDesc != null) it.desc == methodDesc else true }
-            .find { it.name == methodName }
-            ?.let { injectInsnList(it) }
+                .filter { if (methodDesc != null) it.desc == methodDesc else true }
+                .find { it.name == methodName }
+                ?.let { injectInsnList(it) }
     }
 
     private fun injectInsnList(method: MethodNode) {
@@ -61,10 +61,10 @@ class InjectWriter(
         @Throws(IllegalStateException::class)
         fun build(): AsmWriter {
             return InjectWriter(
-                className ?: throw IllegalStateException("className must NOT be null."),
-                methodName ?: throw IllegalStateException("methodName must NOT be null."),
-                at ?: throw IllegalStateException("at must NOT be null."),
-                insnListData ?: throw IllegalStateException("insnListData must NOT be null.")
+                    className ?: throw IllegalStateException("className must NOT be null."),
+                    methodName ?: throw IllegalStateException("methodName must NOT be null."),
+                    at ?: throw IllegalStateException("at must NOT be null."),
+                    insnListData ?: throw IllegalStateException("insnListData must NOT be null.")
             )
         }
 

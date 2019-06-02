@@ -1,4 +1,4 @@
-package me.kbrewster.hyperium
+package me.kbrewster.hyperium.asm
 
 import me.falsehonesty.asmhelper.dsl.AsmWriter
 import org.apache.logging.log4j.LogManager

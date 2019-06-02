@@ -1,11 +1,10 @@
-package me.kbrewster.hyperium.transformers
+package me.kbrewster.hyperium.asm.transformers
 
 import me.falsehonesty.asmhelper.dsl.At
 import me.falsehonesty.asmhelper.dsl.InjectionPoint
 import me.falsehonesty.asmhelper.dsl.inject
 import me.falsehonesty.asmhelper.dsl.instructions.*
-import me.kbrewster.hyperium.Transformable
-import me.kbrewster.hyperium.remapper
+import me.kbrewster.hyperium.asm.remapper
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.util.Window
 

@@ -51,6 +51,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}"
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    modCompile "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
   //  provided 'com.github.Sk1erLLC:AsmHelper:ddd0d32578'
 }
 

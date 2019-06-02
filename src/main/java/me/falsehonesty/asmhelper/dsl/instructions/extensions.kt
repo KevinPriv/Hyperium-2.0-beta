@@ -89,6 +89,22 @@ inline fun InsnListBuilder.createInstance(className: String, constructorDescript
     )
 }
 
+fun InsnListBuilder.getKObjectInstance(objectClassName: String) {
+    field(FieldAction.GET_STATIC, objectClassName, "INSTANCE", "L$objectClassName")
+}
+
+/**
+ * Calls an instance method on a Kotlin Object.
+ *
+ * Behind the scenes, this produces bytecode that gets the Object instance, and
+ * then calls the method.
+ */
+fun InsnListBuilder.invokeKOBjectFunction(objectClassName: String, methodName: String, methodDesc: String) {
+    getKObjectInstance(objectClassName)
+
+    invoke(InvokeType.VIRTUAL, objectClassName, methodName, methodDesc)
+}
+
 inline fun InsnListBuilder.ifElseClause(vararg conditions: JumpCondition, builder: IfElseBuilder.() -> Unit) {
     val ifElse = IfElseBuilder()
 

@@ -12,11 +12,11 @@ class FieldWriter(
     private val fieldDesc: String,
     private val initialValue: Any?,
     private val initializer: InsnList?,
-    private val accessTypes: List<AccessType>
+    private val accessTypes: Int
 ) : AsmWriter(className) {
     override fun transform(classNode: ClassNode) {
         classNode.fields.add(FieldNode(
-            accessTypes.fold(0) { acc, accessType -> acc or accessType.opcode },
+            accessTypes,
             fieldName,
             fieldDesc,
             null,
@@ -38,7 +38,7 @@ class FieldWriter(
 
     class Builder {
         var className: String? = null
-        var accessTypes: List<AccessType> = listOf()
+        var accessTypes: Int = 0
         var fieldName: String? = null
         var fieldDesc: String? = null
         var initialValue: Any? = null

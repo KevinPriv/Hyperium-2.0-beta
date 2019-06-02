@@ -12,7 +12,14 @@ enum class InvokeType(val opcode: Int) {
 
 fun InsnListBuilder.invoke(type: InvokeType, descriptor: Descriptor) = this.invoke(type, descriptor.owner, descriptor.name, descriptor.desc)
 
-
+/**
+ * Simple block to segment off each individual argument.
+ *
+ * Definitely not necessary, it simply runs the code in the lambda immediately.
+ */
+fun InsnListBuilder.argument(argumentCode: InsnListBuilder.() -> Unit) {
+    this.argumentCode()
+}
 /**
  * Calls a specified method.
  *
