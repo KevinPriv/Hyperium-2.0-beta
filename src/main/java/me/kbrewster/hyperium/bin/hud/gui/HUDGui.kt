@@ -1,8 +1,8 @@
-package me.kbrewster.hyperium.features.hud.gui
+package me.kbrewster.hyperium.bin.hud.gui
 
 import com.mojang.blaze3d.platform.GlStateManager
-import me.kbrewster.hyperium.features.hud.HUD
-import me.kbrewster.hyperium.features.hud.SavedItem
+import me.kbrewster.hyperium.bin.hud.HUD
+import me.kbrewster.hyperium.bin.hud.SavedItem
 import me.kbrewster.hyperium.gui.HyperiumScreen
 import net.minecraft.client.MinecraftClient
 import kotlin.math.absoluteValue

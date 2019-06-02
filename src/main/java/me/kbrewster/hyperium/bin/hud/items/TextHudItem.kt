@@ -1,7 +1,7 @@
-package me.kbrewster.hyperium.features.hud.items
+package me.kbrewster.hyperium.bin.hud.items
 
 import com.mojang.blaze3d.platform.GlStateManager
-import me.kbrewster.hyperium.features.hud.Alignment
+import me.kbrewster.hyperium.bin.hud.Alignment
 import me.kbrewster.hyperium.utils.Position
 import java.awt.Color
 import java.awt.Dimension

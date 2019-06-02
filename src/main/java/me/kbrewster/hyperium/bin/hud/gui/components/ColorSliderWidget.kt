@@ -1,4 +1,4 @@
-package me.kbrewster.hyperium.features.hud.gui.components
+package me.kbrewster.hyperium.bin.hud.gui.components
 
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.widget.SliderWidget

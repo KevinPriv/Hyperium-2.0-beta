@@ -1,4 +1,4 @@
-package me.kbrewster.hyperium.features.hud
+package me.kbrewster.hyperium.bin.hud
 
 
 /**

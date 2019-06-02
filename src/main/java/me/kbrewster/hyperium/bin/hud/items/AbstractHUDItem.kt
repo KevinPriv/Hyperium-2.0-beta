@@ -1,6 +1,6 @@
-package me.kbrewster.hyperium.features.hud.items
+package me.kbrewster.hyperium.bin.hud.items
 
-import me.kbrewster.hyperium.features.hud.Alignment
+import me.kbrewster.hyperium.bin.hud.Alignment
 import me.kbrewster.hyperium.utils.Position
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawableHelper

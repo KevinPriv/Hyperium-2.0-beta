@@ -1,4 +1,4 @@
-package me.kbrewster.hyperium.features.hud.items
+package me.kbrewster.hyperium.bin.hud.items
 
 import net.minecraft.client.MinecraftClient
 

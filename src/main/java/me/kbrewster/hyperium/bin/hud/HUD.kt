@@ -1,18 +1,19 @@
-package me.kbrewster.hyperium.features.hud
+package me.kbrewster.hyperium.bin.hud
 
 import me.kbrewster.eventbus.Subscribe
+import me.kbrewster.hyperium.bin.Feature
+import me.kbrewster.hyperium.bin.hud.gui.HUDConfigureGUI
+import me.kbrewster.hyperium.bin.hud.gui.HUDGui
+import me.kbrewster.hyperium.bin.hud.items.FPSHUDItem
+import me.kbrewster.hyperium.bin.hud.items.PosHUDItem
 import me.kbrewster.hyperium.events.ClientChatEvent
 import me.kbrewster.hyperium.events.OnGuiHudRenderEvent
-import me.kbrewster.hyperium.features.AbstractFeature
-import me.kbrewster.hyperium.features.hud.gui.HUDConfigureGUI
-import me.kbrewster.hyperium.features.hud.gui.HUDGui
-import me.kbrewster.hyperium.features.hud.items.FPSHUDItem
-import me.kbrewster.hyperium.features.hud.items.PosHUDItem
 import net.minecraft.client.MinecraftClient
 import java.awt.Color
 
-object HUD : AbstractFeature() {
-    override val metadata = Metadata("HUD", "Cubxity", 1)
+object HUD : Feature() {
+    override val metadata = Metadata("HUD", 1, listOf("Cubxity"))
+
     val hudItems = mutableMapOf(
             "hyperium.position" to PosHUDItem(),
             "hyperium.fps" to FPSHUDItem()
@@ -22,9 +23,6 @@ object HUD : AbstractFeature() {
     var pending = false
     var rgb: Int = 0xffffffff.toInt()
     var h = 0.0f
-
-    init {
-    }
 
     @Subscribe
     fun render(e: OnGuiHudRenderEvent) {

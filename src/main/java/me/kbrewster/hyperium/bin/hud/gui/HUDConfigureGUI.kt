@@ -1,11 +1,11 @@
-package me.kbrewster.hyperium.features.hud.gui
+package me.kbrewster.hyperium.bin.hud.gui
 
-import me.kbrewster.hyperium.features.hud.HUD
-import me.kbrewster.hyperium.features.hud.SavedItem
-import me.kbrewster.hyperium.features.hud.gui.components.BackgroundOpacitySliderWidget
-import me.kbrewster.hyperium.features.hud.gui.components.ColorSliderWidget
-import me.kbrewster.hyperium.features.hud.gui.components.OpacitySliderWidget
-import me.kbrewster.hyperium.features.hud.items.TextHudItem
+import me.kbrewster.hyperium.bin.hud.HUD
+import me.kbrewster.hyperium.bin.hud.SavedItem
+import me.kbrewster.hyperium.bin.hud.gui.components.BackgroundOpacitySliderWidget
+import me.kbrewster.hyperium.bin.hud.gui.components.ColorSliderWidget
+import me.kbrewster.hyperium.bin.hud.gui.components.OpacitySliderWidget
+import me.kbrewster.hyperium.bin.hud.items.TextHudItem
 import me.kbrewster.hyperium.gui.HyperiumScreen
 import net.minecraft.client.MinecraftClient
 import java.awt.Color

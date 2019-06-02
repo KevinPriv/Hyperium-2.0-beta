@@ -1,6 +1,6 @@
-package me.kbrewster.hyperium.features.hud.gui.components
+package me.kbrewster.hyperium.bin.hud.gui.components
 
-import me.kbrewster.hyperium.features.hud.SavedItem
+import me.kbrewster.hyperium.bin.hud.SavedItem
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.widget.SliderWidget
 

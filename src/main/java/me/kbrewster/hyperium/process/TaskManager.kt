@@ -1,8 +1,10 @@
 package me.kbrewster.hyperium.process
 
-object TaskManager: Manager {
+import me.kbrewster.hyperium.bin.hud.HUD
 
-    val runningProcesses = ProcessListings(startupProcesses = mutableListOf<Process>())
+object TaskManager : Manager {
+
+    val runningProcesses = ProcessListings(startupProcesses = mutableListOf(HUD))
 
     override fun onInitialisation() {
         this.runningProcesses.onInitialisation()
