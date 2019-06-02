@@ -5,6 +5,7 @@ import me.kbrewster.hyperium.features.hud.SavedItem
 import me.kbrewster.hyperium.features.hud.gui.components.BackgroundOpacitySliderWidget
 import me.kbrewster.hyperium.features.hud.gui.components.ColorSliderWidget
 import me.kbrewster.hyperium.features.hud.gui.components.OpacitySliderWidget
+import me.kbrewster.hyperium.features.hud.items.TextHudItem
 import me.kbrewster.hyperium.gui.HyperiumScreen
 import net.minecraft.client.MinecraftClient
 import java.awt.Color
@@ -19,6 +20,14 @@ class HUDConfigureGUI(val item: SavedItem) : HyperiumScreen("HUD Config") {
         // Config
         var y = height / 2 - 100
         val conf = item.config
+        if (conf is TextHudItem.Config) {
+            textField(width / 2 - 100, y, 200, 20, conf.format) {
+                setChangedListener {
+                    conf.format = it
+                }
+            }
+            y += 25
+        }
         addButton(OpacitySliderWidget(item, width / 2 - 100, y, 200, 20))
         y += 25
         button("Background: ${toText(conf.background)}", width / 2 - 100, y, 200, 20) {
@@ -26,6 +35,13 @@ class HUDConfigureGUI(val item: SavedItem) : HyperiumScreen("HUD Config") {
             it.message = "Background: ${toText(conf.background)}"
         }
         y += 25
+        if (conf is TextHudItem.Config) {
+            button("Shadow: ${toText(conf.shadow)}", width / 2 - 100, y, 200, 20) {
+                conf.shadow = !conf.shadow
+                it.message = "Shadow: ${toText(conf.shadow)}"
+            }
+            y += 25
+        }
         addButton(BackgroundOpacitySliderWidget(item, width / 2 - 100, y, 200, 20))
         y += 25
         var pickerIndex = 0

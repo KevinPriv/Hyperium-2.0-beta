@@ -11,7 +11,7 @@ abstract class TextHudItem(name: String, val initialFormat: String) : AbstractHU
     val height = inGameHud.fontRenderer.fontHeight
 
     override fun render(pos: Position, alignment: Alignment, config: AbstractConfig) {
-        GlStateManager.enableBlend()
+        GlStateManager.disableBlend()
         GlStateManager.alphaFunc(516, 1 - config.opacity.toFloat())
         GlStateManager.scaled(config.scale, config.scale, 1.0)
         config as Config
@@ -21,7 +21,7 @@ abstract class TextHudItem(name: String, val initialFormat: String) : AbstractHU
         if (config.shadow)
             inGameHud.fontRenderer.drawWithShadow(s, pos.first.toFloat(), pos.second.toFloat(), config.color)
         else
-            inGameHud.fontRenderer.drawWithShadow(s, pos.first.toFloat(), pos.second.toFloat(), config.color)
+            inGameHud.fontRenderer.draw(s, pos.first.toFloat(), pos.second.toFloat(), config.color)
         GlStateManager.scaled(1.0, 1.0, 1.0)
         GlStateManager.alphaFunc(516, 0F)
     }
