@@ -41,7 +41,7 @@ object ChatScreenTransformer : Transformable {
             // if (stack_0.isCancelled() != 0)
             aload(5)
             invoke(InvokeType.VIRTUAL, Descriptor("me/kbrewster/eventbus/event/CancellableEvent", "isCancelled", "()Z"))
-            ifClause(JumpCondition.NOT_EQUAL) {
+            ifClause(JumpCondition.EQUAL) {
                 //this.minecraft.openScreen(null)
                 aload(0)
                 getField(Descriptor(chatScreenName.replace('.', '/'), minecraftName, "L${minecraftClientName.replace('.', '/')};"))
