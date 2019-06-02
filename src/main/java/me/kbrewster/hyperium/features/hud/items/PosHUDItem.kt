@@ -2,7 +2,6 @@ package me.kbrewster.hyperium.features.hud.items
 
 import net.minecraft.client.MinecraftClient
 
-
 /**
  * @author Cubxity
  * @since 6/1/2019

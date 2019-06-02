@@ -1,10 +1,12 @@
 package me.kbrewster.hyperium.features.hud
 
 import me.kbrewster.hyperium.features.hud.items.AbstractHUDItem
-import me.kbrewster.hyperium.features.hud.items.FPSHUDItem
 
 data class Config(
-        val items: MutableList<SavedItem> = mutableListOf(SavedItem("hyperium.fps", FPSHUDItem.Config()))
+        val items: MutableList<SavedItem> = mutableListOf(
+                SavedItem("hyperium.fps", HUD.hudItems["hyperium.fps"]!!.initConfig()),
+                SavedItem("hyperium.position", HUD.hudItems["hyperium.position"]!!.initConfig())
+        )
 )
 
 /**

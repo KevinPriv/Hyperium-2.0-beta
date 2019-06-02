@@ -5,6 +5,7 @@ import me.kbrewster.hyperium.features.hud.HUD
 import me.kbrewster.hyperium.features.hud.SavedItem
 import me.kbrewster.hyperium.gui.HyperiumScreen
 import net.minecraft.client.MinecraftClient
+import kotlin.math.absoluteValue
 
 /**
  * @author Cubxity
@@ -37,6 +38,17 @@ class HUDGui : HyperiumScreen("HUD Config") {
 
                     fill(position.first * 2 - 2, position.second * 2, position.first * 2 - 1, (position.second + bounds.height) * 2, rgb) // Left line
                     fill((position.first + bounds.width) * 2 + 1, position.second * 2, (position.first + bounds.width) * 2 + 2, (position.second + bounds.height) * 2, rgb) // Right line
+
+                    val pos = i.config.position
+                    HUD.config.items.forEach {
+                        if (it == i) return@forEach
+                        val ip = it.config.position
+                        if (pos.second == ip.second)
+                            fill(pos.first * 2, pos.second * 2, ip.first * 2, pos.second * 2 + 1, rgb)
+                        if (pos.first == ip.first)
+                            fill(pos.first * 2, pos.second * 2, pos.first * 2 + 1, ip.second * 2, rgb)
+                    }
+
                     GlStateManager.scaled(1.0, 1.0, 1.0)
                 }
         }
@@ -63,7 +75,35 @@ class HUDGui : HyperiumScreen("HUD Config") {
         val bounds = HUD.hudItems[i.id]?.getBounds(i.config)
         val pos = i.config.position
         if (bounds != null && x1.toInt() in pos.first until pos.first + bounds.width && y1.toInt() in pos.second until pos.second + bounds.height) {
-            i.config.position = x1.toInt() - diffX to y1.toInt() - diffY
+            var tx = x1.toInt() - diffX
+            var ty = y1.toInt() - diffY
+            if (!hasControlDown())
+                HUD.config.items.forEach {
+                    if (it == selectedItem) return@forEach
+                    // Grid snap
+                    val ip = it.config.position
+                    val bounds = HUD.hudItems[i.id]?.getBounds(it.config)
+                    if ((ty - ip.second).absoluteValue <= 5) {
+                        ty = ip.second
+                    }
+                    if ((tx - ip.first).absoluteValue <= 5) {
+                        tx = ip.first
+                    }
+                }
+            i.config.position = tx to ty
+        }
+        return true
+    }
+
+    override fun keyPressed(key: Int, int_2: Int, int_3: Int): Boolean {
+        super.keyPressed(key, int_2, int_3)
+        val i = selectedItem ?: return true
+        val pos = i.config.position
+        when (key) {
+            264 -> i.config.position = pos.first to pos.second + 1 // Down
+            263 -> i.config.position = pos.first - 1 to pos.second // Left
+            262 -> i.config.position = pos.first + 1 to pos.second // Right
+            265 -> i.config.position = pos.first to pos.second - 1 // Up
         }
         return true
     }

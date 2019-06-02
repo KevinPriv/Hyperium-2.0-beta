@@ -12,11 +12,11 @@ import java.awt.Color
 
 object HUD : AbstractFeature() {
     override val metadata = Metadata("HUD", "Cubxity", 1)
-    val config = Config() // This is temp TODO: Saving/Loading
     val hudItems = mutableMapOf(
             "hyperium.position" to PosHUDItem(),
             "hyperium.fps" to FPSHUDItem()
     )
+    val config = Config() // This is temp TODO: Saving/Loading
     var t = 0
     var pending = false
     var rgb: Int = 0xffffffff.toInt()
