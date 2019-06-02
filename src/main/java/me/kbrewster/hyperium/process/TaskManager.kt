@@ -1,16 +1,14 @@
 package me.kbrewster.hyperium.process
 
-object TaskManager: ProcessManager {
+object TaskManager: Manager {
 
-    override val startupProcesses = mutableListOf<Process>()
-
-    override val runningProcesses = mutableListOf<Process>()
+    val runningProcesses = ProcessListings(startupProcesses = mutableListOf<Process>())
 
     override fun onInitialisation() {
-        super.onInitialisation()
+        this.runningProcesses.onInitialisation()
     }
 
     override fun onShutdown() {
-        super.onShutdown()
+        this.runningProcesses.onShutdown()
     }
 }

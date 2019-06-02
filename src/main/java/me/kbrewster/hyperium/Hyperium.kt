@@ -18,13 +18,12 @@ object Hyperium {
 
     val eventbus = DefaultEventBus()
 
-    val manager = TaskManager
 
     @Subscribe(1337)
     fun init(event: InitialisationEvent) {
         logger.info("Successfully entered initialisation!")
         logger.debug("Launched on the {} classloader.".format(this.javaClass.classLoader.toString()))
-        manager.onInitialisation()
+        TaskManager.onInitialisation()
     }
 
     @Subscribe(1337)
