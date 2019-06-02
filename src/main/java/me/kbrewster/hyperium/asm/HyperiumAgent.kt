@@ -2,6 +2,7 @@ package me.kbrewster.hyperium.asm
 
 import me.kbrewster.hyperium.ClassTransformer
 import me.kbrewster.hyperium.Inaccessible
+import me.kbrewster.hyperium.transformers.ChatScreenTransformer
 import me.kbrewster.hyperium.transformers.InGameHudTransformer
 import me.kbrewster.hyperium.transformers.MinecraftClientTransformer
 import org.apache.logging.log4j.LogManager
@@ -14,7 +15,7 @@ object HyperiumAgent {
 
     private val logger = LogManager.getLogger("Agent")
 
-    val transformers = listOf(MinecraftClientTransformer, InGameHudTransformer)
+    val transformers = listOf(MinecraftClientTransformer, InGameHudTransformer, ChatScreenTransformer)
 
     @JvmStatic
     fun premain(arguments: String?, instrumentation: Instrumentation) {
@@ -38,9 +39,5 @@ object HyperiumAgent {
                         invoke(classLoader, uri.toURL())
                     }
         }
-
-
     }
-
-
 }

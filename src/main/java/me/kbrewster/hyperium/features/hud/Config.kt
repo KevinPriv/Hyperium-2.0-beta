@@ -1,17 +1,11 @@
 package me.kbrewster.hyperium.features.hud
 
 import me.kbrewster.hyperium.features.hud.items.AbstractHUDItem
-import me.kbrewster.hyperium.utils.Position
+import me.kbrewster.hyperium.features.hud.items.FPSHUDItem
 
 data class Config(
-        val packs: MutableList<SavedPack> = mutableListOf()
+        val items: MutableList<SavedItem> = mutableListOf(SavedItem("hyperium.fps", FPSHUDItem.Config()))
 )
-
-/**
- * @param position position of the pack
- * @param alignment alignment of the pack
- */
-data class SavedPack(val position: Position, val alignment: Alignment, val items: MutableList<SavedItem> = mutableListOf())
 
 /**
  * @param id hud item id

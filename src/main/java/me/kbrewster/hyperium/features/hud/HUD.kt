@@ -1,6 +1,7 @@
 package me.kbrewster.hyperium.features.hud
 
 import me.kbrewster.eventbus.Subscribe
+import me.kbrewster.hyperium.events.ClientChatEvent
 import me.kbrewster.hyperium.events.OnGuiHudRenderEvent
 import me.kbrewster.hyperium.features.AbstractFeature
 import me.kbrewster.hyperium.features.hud.gui.HUDGui
@@ -16,22 +17,30 @@ object HUD : AbstractFeature() {
             "hyperium.fps" to FPSHUDItem()
     )
     var t = 0
+    var pending = false
 
     init {
     }
 
     @Subscribe
     fun render(e: OnGuiHudRenderEvent) {
-        if (t == 100) {
-            MinecraftClient.getInstance().openScreen(HUDGui())
-        }
-        t++
-        config.packs.forEach {
-            it.items.forEach { i ->
-                with(i) {
-                    hudItems[id]?.render(it.position, it.alignment, i.config)
-                }
+        if (pending)
+            if (t == 2) {
+                MinecraftClient.getInstance().openScreen(HUDGui())
+                pending = false
+            } else t++
+        config.items.forEach {
+            with(it.config) {
+                hudItems[it.id]?.render(position, alignment, this)
             }
+        }
+    }
+
+    @Subscribe
+    fun onChat(e: ClientChatEvent) {
+        if (e.message == "/hud") { // temp TODO: Actual command system
+            e.cancelled = true
+            pending = true
         }
     }
 }

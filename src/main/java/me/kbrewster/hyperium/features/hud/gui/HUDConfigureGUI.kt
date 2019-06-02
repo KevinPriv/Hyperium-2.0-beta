@@ -3,6 +3,7 @@ package me.kbrewster.hyperium.features.hud.gui
 import me.kbrewster.hyperium.gui.HyperiumScreen
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.widget.ButtonListWidget
+import net.minecraft.client.options.BooleanOption
 
 /**
  * @author Cubxity
@@ -11,9 +12,12 @@ import net.minecraft.client.gui.widget.ButtonListWidget
 class HUDConfigureGUI : HyperiumScreen("HUD Config") {
 
     override fun init() {
-        /*children += ButtonListWidget(MinecraftClient.getInstance(), 200, 800, height / 2 - 400, height / 2 + 400, 25).apply {
+        children += ButtonListWidget(MinecraftClient.getInstance(), 200, 800, height / 2 - 400, height / 2 + 400, 25).apply {
+            this.addAll(arrayOf(BooleanOption("FPS", { true }, { op, bool ->
 
-        }*/
+            })))
+
+        }
         button("Adjust Position", width / 2 - 100, height / 2 - 60, 200, 20) {
 
         }
@@ -25,5 +29,7 @@ class HUDConfigureGUI : HyperiumScreen("HUD Config") {
 
     override fun render(x: Int, y: Int, partialTicks: Float) {
         super.render(x, y, partialTicks)
+        children.filter { it is ButtonListWidget }
+                .forEach { (it as ButtonListWidget).render(x, y, partialTicks) }
     }
 }

@@ -32,7 +32,7 @@ data class At(val value: InjectionPoint, val before: Boolean = true, val shift: 
             }
         }
 
-        if(slice > -1) {
+        if (slice > -1) {
             return nodes.slice(0..slice)
         }
         return nodes
