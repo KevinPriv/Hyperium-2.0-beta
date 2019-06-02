@@ -8,6 +8,7 @@ import me.kbrewster.hyperium.features.hud.gui.HUDGui
 import me.kbrewster.hyperium.features.hud.items.FPSHUDItem
 import me.kbrewster.hyperium.features.hud.items.PosHUDItem
 import net.minecraft.client.MinecraftClient
+import java.awt.Color
 
 object HUD : AbstractFeature() {
     override val metadata = Metadata("HUD", "Cubxity", 1)
@@ -18,6 +19,8 @@ object HUD : AbstractFeature() {
     )
     var t = 0
     var pending = false
+    var rgb: Int = 0xffffffff.toInt()
+    var h = 0.0f
 
     init {
     }
@@ -34,6 +37,10 @@ object HUD : AbstractFeature() {
                 hudItems[it.id]?.render(position, alignment, this)
             }
         }
+        if (h > 1f)
+            h = 0f
+        h += 0.005f
+        rgb = Color.getHSBColor(h, 0.8f, 0.8f).rgb
     }
 
     @Subscribe

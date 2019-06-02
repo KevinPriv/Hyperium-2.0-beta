@@ -19,6 +19,11 @@ abstract class AbstractHUDItem(val name: String) : DrawableHelper() {
 
     abstract fun getBounds(config: AbstractConfig): Dimension
 
+    /**
+     * This function should return initial state of the config
+     */
+    abstract fun initConfig(): AbstractConfig
+
     abstract class AbstractConfig(
             var position: Position = 10 to 10,
             var alignment: Alignment = Alignment.LEFT,
