@@ -15,11 +15,13 @@ class HUDGui : HyperiumScreen("HUD Config") {
     private var selectedItem: SavedItem? = null
     var diffX = 0
     var diffY = 0
+    var lastClick = 0L
 
     override fun init() {
         button("Add", width / 2 - 70, height - 30, 140, 20) {
-            MinecraftClient.getInstance().openScreen(HUDConfigureGUI(SavedItem("hyperium.fps",
-                    HUD.hudItems["hyperium.fps"]?.initConfig() ?: return@button)))
+            val i = SavedItem("hyperium.fps", HUD.hudItems["hyperium.fps"]?.initConfig() ?: return@button)
+            HUD.config.items += i
+            MinecraftClient.getInstance().openScreen(HUDConfigureGUI(i))
         }
     }
 
@@ -66,6 +68,9 @@ class HUDGui : HyperiumScreen("HUD Config") {
         selectedItem = i
         diffX = x.toInt() - i.config.position.first
         diffY = y.toInt() - i.config.position.second
+        if (System.currentTimeMillis() - lastClick < 300)
+            MinecraftClient.getInstance().openScreen(HUDConfigureGUI(i))
+        lastClick = System.currentTimeMillis()
         return true
     }
 

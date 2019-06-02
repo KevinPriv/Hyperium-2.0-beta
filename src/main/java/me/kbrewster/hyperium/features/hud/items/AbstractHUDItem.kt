@@ -30,6 +30,7 @@ abstract class AbstractHUDItem(val name: String) : DrawableHelper() {
             var color: Int = 0xFFFFFF,
             var opacity: Double = 1.0,
             var scale: Double = 1.0,
-            var background: Boolean = false
+            var background: Boolean = false,
+            var backgroundOpacity: Double = 1.0
     )
 }

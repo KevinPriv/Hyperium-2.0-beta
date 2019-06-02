@@ -4,6 +4,7 @@ import me.kbrewster.eventbus.Subscribe
 import me.kbrewster.hyperium.events.ClientChatEvent
 import me.kbrewster.hyperium.events.OnGuiHudRenderEvent
 import me.kbrewster.hyperium.features.AbstractFeature
+import me.kbrewster.hyperium.features.hud.gui.HUDConfigureGUI
 import me.kbrewster.hyperium.features.hud.gui.HUDGui
 import me.kbrewster.hyperium.features.hud.items.FPSHUDItem
 import me.kbrewster.hyperium.features.hud.items.PosHUDItem
@@ -32,11 +33,12 @@ object HUD : AbstractFeature() {
                 MinecraftClient.getInstance().openScreen(HUDGui())
                 pending = false
             } else t++
-        config.items.forEach {
-            with(it.config) {
-                hudItems[it.id]?.render(position, alignment, this)
+        if (MinecraftClient.getInstance().currentScreen !is HUDConfigureGUI)
+            config.items.forEach {
+                with(it.config) {
+                    hudItems[it.id]?.render(position, alignment, this)
+                }
             }
-        }
         if (h > 1f)
             h = 0f
         h += 0.005f
