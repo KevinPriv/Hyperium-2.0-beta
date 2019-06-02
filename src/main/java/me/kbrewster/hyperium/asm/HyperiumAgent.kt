@@ -1,7 +1,7 @@
 package me.kbrewster.hyperium.asm
 
 import me.kbrewster.hyperium.Inaccessible
-import me.kbrewster.hyperium.transformers.ChatScreenTransformer
+import me.kbrewster.hyperium.asm.transformers.ChatScreenTransformer
 import me.kbrewster.hyperium.asm.transformers.InGameHudTransformer
 import me.kbrewster.hyperium.asm.transformers.MinecraftClientTransformer
 import org.apache.logging.log4j.LogManager
