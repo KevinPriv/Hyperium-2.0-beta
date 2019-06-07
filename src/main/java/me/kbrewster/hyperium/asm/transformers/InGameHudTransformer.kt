@@ -19,9 +19,9 @@ object InGameHudTransformer : Transformable {
         methodName = drawName
         at = At(InjectionPoint.INVOKE(Descriptor(inGameHudName.replace(".", "/"), renderStatusEffectOverlayName, "()V")), before = false)
         insnList {
-            // local_7 = OnGuiHudRender()
+            // local_7 = GuiHudRenderEvent()
             // Hyperium.INSTANCE.getEventbus().post(local_7)
-            createInstance("me/kbrewster/hyperium/events/OnGuiHudRenderEvent", "()V")
+            createInstance("me/kbrewster/hyperium/events/GuiHudRenderEvent", "()V")
             astore(7)
             field(FieldAction.GET_STATIC, "me/kbrewster/hyperium/Hyperium", "INSTANCE", "Lme/kbrewster/hyperium/Hyperium;")
             invoke(InvokeType.VIRTUAL, "me/kbrewster/hyperium/Hyperium", "getEventbus", "()Lme/kbrewster/eventbus/DefaultEventBus;")

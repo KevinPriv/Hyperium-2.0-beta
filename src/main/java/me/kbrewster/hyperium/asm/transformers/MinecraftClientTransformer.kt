@@ -11,6 +11,7 @@ object MinecraftClientTransformer: Transformable {
 
     val minecraftClientName = MinecraftClient::class.java.name
     val startName: String by remapper("start", "")
+    val tickName: String by remapper("tick", "")
 
     val start = inject {
             className = minecraftClientName
@@ -38,18 +39,29 @@ object MinecraftClientTransformer: Transformable {
                 invoke(InvokeType.VIRTUAL, "me/kbrewster/eventbus/DefaultEventBus", "register", "(Ljava/lang/Object;)V")
 
                 // Hyperium.INSTANCE.getEventbus().post(InitialisationEvent())
-                createInstance("me/kbrewster/hyperium/events/InitialisationEvent", "()V")
-                astore(7)
                 field(FieldAction.GET_STATIC, "me/kbrewster/hyperium/Hyperium", "INSTANCE", "Lme/kbrewster/hyperium/Hyperium;")
                 invoke(InvokeType.VIRTUAL, "me/kbrewster/hyperium/Hyperium", "getEventbus", "()Lme/kbrewster/eventbus/DefaultEventBus;")
-                aload(7)
+                createInstance("me/kbrewster/hyperium/events/InitialisationEvent", "()V")
                 invoke(InvokeType.VIRTUAL, "me/kbrewster/eventbus/DefaultEventBus", "post", "(Ljava/lang/Object;)V")
 
             }
         }
 
+    val tick = inject {
+        className = minecraftClientName
+        methodName = tickName
+        at = At(InjectionPoint.RETURN)
+
+        insnList {
+            field(FieldAction.GET_STATIC, "me/kbrewster/hyperium/Hyperium", "INSTANCE", "Lme/kbrewster/hyperium/Hyperium;")
+            invoke(InvokeType.VIRTUAL, "me/kbrewster/hyperium/Hyperium", "getEventbus", "()Lme/kbrewster/eventbus/DefaultEventBus;")
+            createInstance("me/kbrewster/hyperium/events/ClientTickEvent", "()V")
+            invoke(InvokeType.VIRTUAL, "me/kbrewster/eventbus/DefaultEventBus", "post", "(Ljava/lang/Object;)V")
+        }
+    }
+
     init {
-        addTransformer(start)
+        addTransformers(start, tick)
     }
 
 }

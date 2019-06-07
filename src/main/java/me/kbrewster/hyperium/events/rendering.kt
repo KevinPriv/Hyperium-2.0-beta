@@ -5,4 +5,6 @@ import me.kbrewster.eventbus.event.CancellableEvent
 /**
  * TODO
  */
-class OnGuiHudRenderEvent: CancellableEvent()
+class GuiHudRenderEvent: CancellableEvent()
+
+class PlayerRenderEvent

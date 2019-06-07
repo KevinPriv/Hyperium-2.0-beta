@@ -3,9 +3,7 @@ package me.kbrewster.hyperium
 import me.kbrewster.eventbus.DefaultEventBus
 import me.kbrewster.eventbus.Subscribe
 import me.kbrewster.hyperium.events.InitialisationEvent
-import me.kbrewster.hyperium.events.OnGuiHudRenderEvent
 import me.kbrewster.hyperium.process.TaskManager
-import net.minecraft.client.MinecraftClient
 import org.apache.logging.log4j.LogManager
 
 object Hyperium {
